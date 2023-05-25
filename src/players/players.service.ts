@@ -53,17 +53,17 @@ export class PlayersService {
     return await this.playerModel.find().exec();
   }
 
-  async consultPlayerById(): Promise<Player> {
-    const findedPlayer = await this.playerModel.findOne({ email }).exec();
+  async consultPlayerById(_id: string): Promise<Player> {
+    const findedPlayer = await this.playerModel.findOne({ _id }).exec();
     if (!findedPlayer) {
-      throw new NotFoundException(`Player with email ${email} not found`);
+      throw new NotFoundException(`Player with id: ${_id} not found`);
     } else {
       return findedPlayer;
     }
   }
 
-  async deletePlayerByEmail(email: string): Promise<any> {
-    return await this.playerModel.findOneAndDelete({ email }).exec();
+  async deletePlayerById(_id: string): Promise<any> {
+    return await this.playerModel.findOneAndDelete({ _id }).exec();
 
     // without database
     // const findedPlayer = this.players.find((player) => player.email === email);
