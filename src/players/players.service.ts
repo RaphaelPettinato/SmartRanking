@@ -18,8 +18,6 @@ export class PlayersService {
     @InjectModel('Player') private readonly playerModel: Model<Player>,
   ) {}
 
-  private readonly logger = new Logger(PlayersService.name);
-
   async createPlayer(PlayerDto: CreatePlayerDto): Promise<Player> {
     const { email } = PlayerDto;
 
